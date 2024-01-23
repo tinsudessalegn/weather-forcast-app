@@ -1,6 +1,6 @@
 import { useState } from "react"
 import search from './assets/icons/search.svg'
-import { BackgroundLayout, WeatherCard } from './components'
+import { BackgroundLayout, WeatherCard, MiniCard } from './components'
 import { useStateContext } from "./context"
 
 function App() {
@@ -40,6 +40,21 @@ function App() {
           iconString={weather.conditions}
           conditions={weather.conditions}
         />
+
+        <div className='flex justify-center gap-8 flex-wrap w-[60%]'>
+          {
+            values?.slice(1, 7).map(curr => {
+              return (
+                <MiniCard
+                  key={curr.datetime}
+                  time={curr.datetime}
+                  temp={curr.temp}
+                  iconString={curr.conditions}
+                />
+              )
+            })
+          }
+        </div>
         </main>
       </div>
     </>
