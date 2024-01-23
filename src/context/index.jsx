@@ -1,9 +1,9 @@
 import { useContext, createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-const stateContext = createContext()
+const StateContext = createContext()
 
-export const stateContextProvider = ({children})=> {
+export const StateContextProvider = ({ children })=> {
 
     const [weather, setWeather] = useState({})
     const [values, setValues] = useState([])
@@ -28,7 +28,43 @@ export const stateContextProvider = ({children})=> {
                 'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
               }
         }
+
+        try {
+
+            const res = await axios.request(options)
+            console.log(res.data)
+            const thisData = Object.values(res.data.locations)[0]
+            setLocation(thisData.address)
+            setValues(thisData.values)
+            setWeather(thisData.values[0])
+
+        
+        } catch (error) {
+            console.error(error)
+            alert('this place does not exist')
+        }
     }
+
+    useEffect(()=>{
+        fetchWeatherData()
+    }, [place])
+
+    useEffect(() => {
+        console.log(values)
+    }, [values])
+
+    return (
+        <StateContext.Provider value={{
+            weather,
+            setPlace,
+            values,
+            thisLocation,
+            place
+        }}>
+            {children}
+        </StateContext.Provider>
+    )
 
 } 
 
+export const useStateContext = () => useContext(StateContext)
