@@ -9,6 +9,7 @@ function App() {
 
   // console.log(weather)
   const submitCity = ()=> {
+    setPlace(city)
     setCity('')
   }
   return (
