@@ -1,12 +1,13 @@
 import { useState } from "react"
 import search from './assets/icons/search.svg'
-import { useStateContext } from "./context"
+import BackgroundLayout from "./components/BackgroundLayout"
+// import { useStateContext } from "./context"
 
 function App() {
   const [city, setCity] = useState('')
-  const {weather} = useStateContext()
+  // const {weather} = useStateContext()
 
-  console.log(weather)
+  // console.log(weather)
   const submitCity = ()=> {
     setCity('')
   }
@@ -28,6 +29,7 @@ function App() {
                   onChange={e => setCity(e.target.value)}/>
           </div>
         </nav>
+        <BackgroundLayout/>
       </div>
     </>
   )
