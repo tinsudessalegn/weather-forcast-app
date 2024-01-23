@@ -1,11 +1,11 @@
 import { useState } from "react"
 import search from './assets/icons/search.svg'
-import BackgroundLayout from "./components/BackgroundLayout"
-// import { useStateContext } from "./context"
+import { BackgroundLayout, WeatherCard } from './components'
+import { useStateContext } from "./context"
 
 function App() {
   const [city, setCity] = useState('')
-  // const {weather} = useStateContext()
+  const {weather,  thisLocation, values, place, setPlace} = useStateContext()
 
   // console.log(weather)
   const submitCity = ()=> {
@@ -30,6 +30,17 @@ function App() {
           </div>
         </nav>
         <BackgroundLayout/>
+        <main className='w-full flex flex-wrap gap-8 py-4 px-[10%] items-center justify-center'>
+        <WeatherCard
+          place={thisLocation}
+          windspeed={weather.wspd}
+          humidity={weather.humidity}
+          temperature={weather.temp}
+          heatIndex={weather.heatindex}
+          iconString={weather.conditions}
+          conditions={weather.conditions}
+        />
+        </main>
       </div>
     </>
   )
