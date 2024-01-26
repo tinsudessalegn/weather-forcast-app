@@ -12,6 +12,7 @@ import wind from '../assets/icons/windy.png'
 const MiniCard = ({ time, temp, iconString }) => {
 
   const [icon, setIcon] = useState()
+  
 
   useEffect(() => {
     if (iconString) {
@@ -31,6 +32,7 @@ const MiniCard = ({ time, temp, iconString }) => {
         setIcon(wind)
       }
     }
+
   }, [iconString])
 
   return (

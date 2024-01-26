@@ -3,15 +3,20 @@ import search from './assets/icons/search.svg'
 import { BackgroundLayout, WeatherCard, MiniCard } from './components'
 import { useStateContext } from "./context"
 
+
 function App() {
   const [city, setCity] = useState('')
-  const {weather,  thisLocation, values, place, setPlace} = useStateContext()
+  // eslint-disable-next-line no-unused-vars
+  const {weather,  thisLocation, values, place, setPlace, setUnit} = useStateContext()
 
   // console.log(weather)
   const submitCity = ()=> {
     setPlace(city)
     setCity('')
   }
+
+
+
   return (
     <>
       <div className='w-full h-screen text-white px-8'>
@@ -29,6 +34,7 @@ function App() {
                   placeholder='Search city' className='focus:outline-none w-full text-[#212121] text-lg' value={city}
                   onChange={e => setCity(e.target.value)}/>
           </div>
+
         </nav>
         <BackgroundLayout/>
         <main className='w-full flex flex-wrap gap-8 py-4 px-[10%] items-center justify-center'>
